@@ -42,9 +42,9 @@ const ChannelList = () => {
             justifyContent: 'space-between'
         }}>
             <Box sx={{
-                fontFamily: 'Faktum, sans-serif',
+                fontFamily: 'Poppins, sans-serif',
                 fontWeight: 'bold',
-                color: theme.palette.primary.dark,
+                color: theme.palette.text.primary,
             }}>{t('Channels')}</Box>
             <ChannelAddMenu/>
         </Box>

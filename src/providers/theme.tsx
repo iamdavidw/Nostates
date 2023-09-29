@@ -22,8 +22,12 @@ const themes = {
             mode: 'dark',
             divider: 'rgba(255, 255, 255, 0.08)',
             primary: {
-                main: '#7166FF',
-                dark: 'rgb(132, 132, 132)',
+                main: 'rgb(113, 102, 255)',
+                dark: 'rgb(76, 64, 233)',
+            },
+            secondary: {
+                main: 'rgb(35, 35, 35)',
+                dark: 'rgb(50, 50, 50)',
             },
             error: {
                 main: '#F23047'

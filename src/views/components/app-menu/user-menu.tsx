@@ -61,16 +61,16 @@ const UserMenu = () => {
                 if (profile?.name) {
                     return <Box sx={{
                         ...sx,
-                        fontFamily: 'Faktum, sans-serif',
-                        fontWeight: 'bold',
-
+                        fontFamily: 'Poppins, sans-serif',
+                        fontWeight: '600',
                     }}>{profile.name || ''}</Box>
                 }
 
                 return <Box sx={{
                     ...sx,
                     fontSize: '90%',
-                    color: theme.palette.primary.dark,
+                    fontWeight: '600',
+                    color: theme.palette.text.secondary,
                     opacity: '0.6',
                 }}>{truncateMiddle(nip19.npubEncode(keys.pub), 20, ':')}</Box>
             })()}

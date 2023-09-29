@@ -68,20 +68,20 @@ const DmList = () => {
             justifyContent: 'space-between'
         }}>
             <Box sx={{
-                fontFamily: 'Faktum, sans-serif',
+                fontFamily: 'Poppins, sans-serif',
                 fontWeight: 'bold',
-                color: theme.palette.primary.dark,
+                color: theme.palette.text.primary,
 
             }}>
-                {showRequests ? t('DM Requests') : t('DMs')}
+                {showRequests ? t('Other Requests') : t('Messages')}
             </Box>
-            <Button onClick={search} sx={{minWidth: 'auto'}}><Plus height={18}/></Button>
+            <Button color="primary" onClick={search} sx={{minWidth: 'auto'}}><Plus height={18}/></Button>
         </Box>
 
         {!showRequests && requests.length > 0 && (
             <Box sx={{m: '12px 0'}}>
                 <Button size='small' onClick={switchShowRequests}>
-                    {t(requests.length === 1 ? '{{n}} DM request' : '{{n}} DM requests', {n: requests.length})}
+                    {t(requests.length === 1 ? '{{n}} Other Request' : '{{n}} Other Requests', {n: requests.length})}
                 </Button>
             </Box>
         )}
@@ -89,7 +89,7 @@ const DmList = () => {
         {showRequests && (
             <Box sx={{m: '12px 0'}}>
                 <Button size='small' onClick={switchShowRequests}>
-                    {t('< Back to DMs')}
+                    {t('< Back to Messages')}
                 </Button>
             </Box>
         )}
@@ -99,10 +99,10 @@ const DmList = () => {
 
             if (theList.length === 0) {
                 return <Box component='span' sx={{
-                    color: theme.palette.primary.dark,
+                    color: theme.palette.primary.main,
                     fontSize: '85%',
-                    opacity: '0.6',
-                }}>{t('No direct message')}</Box>
+                    opacity: '1.0',
+                }}>{t('No direct messages')}</Box>
             }
 
             return theList.map(p => <DmListItem key={p.npub} contact={p}/>);

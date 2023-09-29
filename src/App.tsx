@@ -17,8 +17,10 @@ import SettingsPublicLinkPage from 'views/settings/public-link';
 import {keysAtom} from 'atoms';
 
 function App() {
+
     const [keys] = useAtom(keysAtom);
 
+    
     return <Router style={{
         width: '100%',
         height: '100%',

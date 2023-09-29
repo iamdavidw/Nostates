@@ -61,7 +61,7 @@ const ChatInput = (props: { separator: string, senderFn: (message: string, menti
     }
 
     return <Box sx={{
-        p: `10px 10px 14px ${isMd ? '20px' : '10px'}`,
+        p: `${isMd ? '20px' : '14px'}}`,
         flexGrow: 0,
         flexShrink: 0,
     }}>
@@ -98,9 +98,10 @@ const ChatInput = (props: { separator: string, senderFn: (message: string, menti
                 </Box>
                 <Button variant="contained" size="small" color="primary" sx={{
                     minWidth: 'auto',
-                    width: '28px',
-                    height: '28px',
-                    padding: '6px',
+                    width: '40px',
+                    height: '40px',
+                    padding: '10px',
+                    marginRight: '10px',
                     borderRadius: '10px'
                 }} onClick={send}><Send height={32}/></Button>
             </Box>

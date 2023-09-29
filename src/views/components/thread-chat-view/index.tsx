@@ -39,6 +39,7 @@ const ThreadChatView = (props: { senderFn: (message: string, mentions: string[])
         })(),
         height: '100%',
         flexGrow: 0,
+        fontFamily: 'Poppins',
         flexShrink: 0,
         background: lighten(theme.palette.background.default, .03),
         display: 'flex',
@@ -56,7 +57,7 @@ const ThreadChatView = (props: { senderFn: (message: string, mentions: string[])
                 alignItems: 'center',
                 p: '0 20px'
             }}>
-                <Box sx={{fontFamily: 'Faktum, sans-serif'}}>
+                <Box sx={{fontFamily: 'Poppins, sans-serif'}}>
                     {t('Thread')}
                 </Box>
                 <IconButton onClick={() => {
@@ -67,7 +68,7 @@ const ThreadChatView = (props: { senderFn: (message: string, mentions: string[])
             {(threadRoot.children && threadRoot.children.length > 0) && (<Divider textAlign="left" sx={{
                 fontSize: '0.7em',
                 color: darken(theme.palette.text.secondary, 0.4),
-                m: '6px 0'
+                m: '6px 20px'
             }}>{t('{{n}} replies', {n: threadRoot.children.length})}</Divider>)}
         </Box>
         <Box ref={ref} sx={{

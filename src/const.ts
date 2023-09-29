@@ -15,11 +15,11 @@ export const ACCEPTABLE_LESS_PAGE_MESSAGES = 5;
 export const SCROLL_DETECT_THRESHOLD = 5;
 
 export const GLOBAL_CHAT: Channel = {
-    id: 'f412192fdc846952c75058e911d37a7392aa7fd2e727330f4344badc92fb8a22',
+    id: 'a3ac114dad9af66d5b0bccd1a3f5e4c2d4b452cc16e0fb0c009df63b636d61f8',
     name: 'Global Chat',
-    about: 'Whatever you want it to be, just be nice',
+    about: 'Discussing freedom tech & bringing it to your hands. Just be civil...',
     picture: '',
-    creator: 'aea59833635dd0868bc7cf923926e51df936405d8e6a753b78038981c75c4a74',
+    creator: 'npub1xfp0eu86raryz2sw53f9qnxdujm8z73c5s55d3vzkae06gz5p0dsxae7an',
     created: 1678198928
 };
 

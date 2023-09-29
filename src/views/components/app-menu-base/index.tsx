@@ -1,22 +1,32 @@
 import React, {useEffect} from 'react';
 import {useAtom} from 'jotai';
+import useTranslation from 'hooks/use-translation';
 import {useLocation} from '@reach/router';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import {useTheme} from '@mui/material/styles';
 import UserMenu from 'views/components/app-menu/user-menu';
 import useMediaBreakPoint from 'hooks/use-media-break-point';
 import useStyles from 'hooks/use-styles';
 import {appMenuAtom} from 'atoms';
-import Github from 'svg/github';
-import pack from '../../../../package.json';
-
+import ArrowLeft from 'svg/arrow-left';
+import useModal from 'hooks/use-modal';
+import {keysAtom} from 'atoms';
+import {removeKeys} from 'local-storage';
+import ConfirmDialog from 'components/confirm-dialog';
+import Invite from 'views/channel/components/dialogs/invite';
+import useLiveChannel from 'hooks/use-live-channel';
 
 const AppMenuBase = (props: { children: React.ReactNode }) => {
+    const [t] = useTranslation();
     const theme = useTheme();
     const styles = useStyles();
     const {isMd} = useMediaBreakPoint();
     const [appMenu, setAppMenu] = useAtom(appMenuAtom);
     const location = useLocation();
+    const [, showModal] = useModal();
+    const [keys, setKeys] = useAtom(keysAtom);
+    const channel = useLiveChannel();
 
     useEffect(() => {
         if (appMenu) {
@@ -28,6 +38,23 @@ const AppMenuBase = (props: { children: React.ReactNode }) => {
 
     if (isSmallScreen && !appMenu) {
         return null;
+    }
+
+    const logout = () => {
+        showModal({
+            body: <ConfirmDialog onConfirm={() => {
+                removeKeys().then();
+                setKeys(null);
+                window.location.href = '/';
+            }}/>
+        });
+    }
+
+    const invite = () => {
+        if (!channel) {return};
+        showModal({
+            body: <Invite channel={channel}/>
+        });
     }
 
     return <Box sx={{
@@ -62,10 +89,9 @@ const AppMenuBase = (props: { children: React.ReactNode }) => {
                 fontSize: '0.8em',
                 color: theme.palette.text.disabled
             }}>
-                <Box sx={{mr: '20px'}}>{`NostrChat v${pack.version}`}</Box>
-                <Box component="a" href="https://github.com/NostrChat/NostrChat" target="_blank" rel="noreferrer"
-                     sx={{color: theme.palette.text.secondary}}>
-                    <Github height={20} style={{marginRight: '4px'}}/>
+                <Box sx={{gap: '20px', display: 'flex', flexDirection: 'row'}}>
+                    <Button sx={{ bottom: '30px', left: '10px'}} variant="contained" color="secondary" onClick={logout}>{t('Logout')}</Button>
+                    <Button sx={{ bottom: '30px', visibility: channel ? 'visible' : 'hidden'}} variant="contained" onClick={invite}>{t('Invite')}</Button>
                 </Box>
             </Box>
         </Box>

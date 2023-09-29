@@ -25,16 +25,17 @@ const DmInput = (props: { pubkey: string, onDM: () => void }) => {
         autoComplete="off"
         InputProps={{
             sx: {
-                fontSize: '14px',
-                pr: '3px'
+                fontSize: '16px',
+                px: '10px'
             },
             endAdornment: <>
                 <Button variant="contained" size="small" color="primary" sx={{
                     minWidth: 'auto',
-                    width: '28px',
-                    height: '28px',
-                    padding: '6px',
-                    borderRadius: '4px'
+                    width: '40px',
+                    height: '40px',
+                    padding: '10px',
+                    marginRight: '10px',
+                    borderRadius: '10px'
                 }} onClick={send}><Send height={28}/></Button>
             </>
         }}

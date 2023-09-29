@@ -29,15 +29,17 @@ const DmHeader = () => {
         </Box>
         <Box sx={{flexGrow: 1, minWidth: 0}}>
             <Box sx={{
-                fontFamily: 'Faktum, sans-serif',
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: 600,
                 ...styles.ellipsis
             }}>
                 {profile?.name}
             </Box>
             {profile?.about && (
                 <Box sx={{
-                    color: theme.palette.primary.dark,
-                    fontSize: '96%',
+                    color: theme.palette.text.secondary,
+                    fontFamily: 'Poppins, sans-serif',
+                    fontSize: '80%',
                     ...styles.ellipsis
                 }}>
                     {profile.about}

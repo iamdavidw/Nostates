@@ -11,7 +11,8 @@ const SettingsHeader = (props: { section?: string }) => {
 
     return <AppContentHeaderBase>
         <Box sx={{
-            fontFamily: 'Faktum, sans-serif',
+            fontFamily: 'Poppins, sans-serif',
+            fontWeight: '600',
             ...styles.ellipsis
         }}>
             {(() => {

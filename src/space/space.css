@@ -1,0 +1,162 @@
+
+
+
+.space {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	margin: auto;
+	width: 100%;
+  	pointer-events: none;
+}
+  
+.comet {
+	position: absolute;
+	width: 3px;
+	height: 160%;
+  	rotate: 20deg;
+	top: -50%;
+	left: 50%;
+	background: rgba(255, 255, 255, 0.0);
+	overflow: hidden;
+	opacity: 0.08;
+  	pointer-events: none;
+
+
+ &::after {
+	content: '';
+	display: block;
+	position: absolute;
+	height: 15vh;
+	width: 100%;
+	top: -50%;
+	left: 0;
+	background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+	animation: drop 10s 0s infinite;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
+}
+  
+
+}
+
+@keyframes drop {
+  0% {
+    top: 125%;
+  }
+  100% {
+    top: -150%;
+  }
+
+}
+
+
+
+
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  opacity: 0;
+  animation: twinkle 5s infinite alternate;
+}
+
+/* Planets styling */
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  animation: orbit infinite linear;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), rgba(0,0,0,0) 70%);
+}
+
+/* Planets colors */
+.planet.red-orange {
+  background-color: #ff6b00;
+  background-image: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.5), rgba(0,0,0,0) 70%), linear-gradient(135deg, #ff6b00, #ff3f00);
+}
+
+.planet.earth {
+  background-color: #0099ff;
+  background-image: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.5), rgba(0,0,0,0) 70%), url("https://i.imgur.com/8W6Fz4M.png");
+  background-size: cover;
+}
+
+.planet.moon {
+  background-color: #f5f5f5;
+  background-image: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.5), rgba(0,0,0,0) 70%), linear-gradient(135deg, #f5f5f5, #e0e0e0);
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+/* Planets orbit keyframes */
+@keyframes orbit {
+  0% { transform: rotate(0deg) translate(150px) rotate(0deg); }
+  100% { transform: rotate(360deg) translate(150px) rotate(-360deg); }
+}
+
+
+@function generate-random-stars ($screen-width, $color, $density){
+  
+  $h-shadow: random($screen-width);
+  $v-shadow: random($screen-width);
+  
+  $stars: '#{$h-shadow}px #{$v-shadow}px #{$color}';
+	@for $i from 2 through $density {
+      $h-shadow: random($screen-width);
+      $v-shadow: random($screen-width);
+    
+    $stars: '#{$stars}, #{$h-shadow}px #{$v-shadow}px #{$color}';
+	}
+	@return unquote($stars);
+}
+
+@mixin stars-content($screen-width, $color, $density, $speed, $delay) {
+  width: 2px;
+  height: 2px;
+	border-radius: 50%;
+	opacity: 0;
+	box-shadow: generate-random-stars($screen-width, $color, $density);
+	animation-name: twinkle;
+  animation-duration: $speed+s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+	animation-delay: $delay+s;
+}
+
+
+#stars-group-1{
+	@include stars-content(1800, #fff, 200, 1, 0);
+}
+
+#stars-group-2{
+	@include stars-content(1800, #fff, 200, 1, 0.1);
+}
+
+#stars-group-3{
+	@include stars-content(1800, #fff, 200, 1, 0.2);
+}
+
+#stars-group-4{
+	@include stars-content(1800, #fff, 200, 1, 0.3);
+}
+
+#stars-group-5{
+	@include stars-content(1800, #fff, 200, 1, 0.4);
+}
+
+#stars-group-6{
+	@include stars-content(1800, #fff, 200, 1, 0.5);
+}
+
+
+    
+

@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
+import {darken} from '@mui/material';
 import {useTheme} from '@mui/material/styles';
 import {Helmet} from 'react-helmet';
 import useTranslation from 'hooks/use-translation';
@@ -36,21 +37,23 @@ const SettingsPublicLinkPage = (_: RouteComponentProps) => {
     const url = `${window.location.protocol}//${window.location.host}/dm/${npub}`;
 
     return <>
-        <Helmet><title>{t('NostrChat - Public DM page')}</title></Helmet>
+        <Helmet><title>{t('NoStates - Public Profile')}</title></Helmet>
         <AppWrapper>
             <SettingsMenu/>
             <AppContent>
-                <SettingsHeader section={t('Public DM page')}/>
+                <SettingsHeader section={t('Public Profile')}/>
                 <SettingsContent>
                     <Box sx={{
                         mb: '20px',
-                        color: theme.palette.text.secondary,
+                        color: darken(theme.palette.text.secondary,0.5),
                         fontSize: '0.8em',
                         display: 'flex',
                         alignItems: 'center'
                     }}>
                         <Information height={18}/>
-                        <Box sx={{ml: '6px'}}>{t('Your public DM page allows people to get in contact with you easily.')}</Box>
+                        <Box sx={{ml: '6px', color: darken(theme.palette.text.secondary,0.5), fontWeight: 700}}>
+                        {t('Your public profile allows people to get in contact with you easily via direct message.')}
+                            </Box>
                     </Box>
 
                     <TextField value={url} fullWidth

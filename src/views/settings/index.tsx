@@ -5,6 +5,7 @@ import {Box, List, ListItemText, ListItemButton, ListItemAvatar} from '@mui/mate
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import {useTheme} from '@mui/material/styles';
+import {darken} from '@mui/material';
 import {Helmet} from 'react-helmet';
 import useTranslation from 'hooks/use-translation';
 import AppWrapper from 'views/components/app-wrapper';
@@ -45,7 +46,7 @@ const SettingsPage = (_: RouteComponentProps) => {
     }
 
     return <>
-        <Helmet><title>{t('NostrChat - Settings')}</title></Helmet>
+        <Helmet><title>{t('NoStates - Settings')}</title></Helmet>
         <AppWrapper>
             <AppMenu/>
             <AppContent>
@@ -65,9 +66,20 @@ const SettingsPage = (_: RouteComponentProps) => {
                                     <ListItemAvatar sx={{display: 'flex', alignItems: 'center',}}>
                                         {a.icon}
                                     </ListItemAvatar>
-                                    <ListItemText primary={a.title}
+                                    <ListItemText primary={<Box component="span"
+                                                                  sx={{
+                                                                    color: theme.palette.text.primary,
+                                                                    fontFamily: 'Poppins',
+                                                                    fontWeight: '600',
+                                                                  }}>
+                                                      {a.title}
+                                                  </Box>}
                                                   secondary={<Box component="span"
-                                                                  sx={{color: theme.palette.text.secondary}}>
+                                                                  sx={{
+                                                                    color: darken(theme.palette.text.secondary,0.3),
+                                                                    fontWeight: '400',
+                                                                    fontFamily: 'Poppins',
+                                                                  }}>
                                                       {a.description}
                                                   </Box>}/>
                                 </ListItemButton>

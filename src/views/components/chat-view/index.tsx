@@ -152,6 +152,8 @@ const ChatView = (props: { messages: Message[], separator: string, loading?: boo
 
     return <Box ref={ref} sx={{
         mt: 'auto',
+        fontFamily: 'Poppins',
+        paddingBottom: '20px',
         ...styles.scrollY,
     }}>
         {messages.map((msg, i) => {
@@ -164,7 +166,7 @@ const ChatView = (props: { messages: Message[], separator: string, loading?: boo
                 return <React.Fragment key={msg.id}>
                     <Divider
                         sx={{
-                            m: '0 24px',
+                            m: '20px 24px',
                             fontSize: '0.7em',
                             color: darken(theme.palette.text.secondary, 0.4),
                             mt: i === 0 ? '100px' : null

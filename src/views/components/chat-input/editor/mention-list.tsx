@@ -103,7 +103,7 @@ const MentionList = forwardRef<MentionListRef, MentionListProps>((props, ref) =>
                     background: index === selectedIndex ? grey[800] : null,
                     mb: index === items.length - 1 ? null : '4px',
                     ':hover': {
-                        background: grey[800]
+                        background: theme.palette.secondary.main
                     }
                 }} onClick={() => selectItem(index)}>
                     <Avatar seed={item.id} size={20} src={item.picture}/>

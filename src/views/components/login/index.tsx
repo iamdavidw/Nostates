@@ -5,7 +5,6 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import {nip06, getPublicKey} from 'nostr-tools';
-
 import {InstallNip07Dialog} from 'views/components/dialogs/no-wallet/nip07';
 import ImportAccount from 'views/components/dialogs/import-account';
 import MetadataForm from 'views/components/metadata-form';
@@ -19,11 +18,13 @@ import Wallet from 'svg/wallet';
 import {PLATFORM} from 'const';
 import {storeKeys} from 'local-storage';
 import {Keys} from 'types';
-
+import {lighten, darken} from '@mui/material';
+import {useTheme} from '@mui/material/styles';
 
 const Login = (props: { onDone: () => void }) => {
     const {onDone} = props;
     const {isSm} = useMediaBreakPoint();
+    const {isMd} = useMediaBreakPoint();
     const [t,] = useTranslation();
     const [, showModal] = useModal();
     const [, setKeys] = useAtom(keysAtom);
@@ -32,6 +33,8 @@ const Login = (props: { onDone: () => void }) => {
     const [raven] = useAtom(ravenAtom);
     const [ravenStatus] = useAtom(ravenStatusAtom);
     const [step, setStep] = useState<0 | 1 | 2>(0);
+    const theme = useTheme();
+
 
     useEffect(() => {
         if (step === 1 && ravenStatus.ready) setStep(2);
@@ -90,12 +93,10 @@ const Login = (props: { onDone: () => void }) => {
     }
 
     return <>
-        <Box component="img" src="/logo-large-white.png" sx={{
-            width: isSm ? '526px' : '100%',
-            height: isSm ? '132px' : null,
-            m: '20px 0 10px 0'
-        }}/>
-        <Divider sx={{m: '28px 0'}}/>
+    <Box sx={{color: 'text.primary', m: '20px 0 10px 0', width: isSm ? '550px' : '100%', minWidth: '350px', fontSize: isSm ? '4rem' : isMd ? '3rem' : '3rem', fontFamily: 'Poppins', fontWeight: 700, display: 'flex', justifyContent: 'center',
+        }}>{('🏳️ NoStates')}
+        </Box>
+        <Divider sx={{m: '28px 0', borderWidth: '2px', borderRadius: '4px'}}/>
         {(() => {
             if (step === 1) {
                 return <Box sx={{display: 'flex', justifyContent: 'center'}}><CircularProgress/></Box>
@@ -114,7 +115,7 @@ const Login = (props: { onDone: () => void }) => {
             }
 
             return <>
-                <Box sx={{color: 'text.secondary', mb: '28px'}}>{t('Sign in to get started')}</Box>
+                <Box sx={{color: darken(theme.palette.text.secondary,0.5), fontFamily: 'Poppins', fontWeight: 700, mb: '28px', display: 'flex', justifyContent: 'center'}}>{t('Sign in to speak your mind')}</Box>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: isSm ? 'row' : 'column'
@@ -123,20 +124,52 @@ const Login = (props: { onDone: () => void }) => {
                             sx={{
                                 mb: '22px',
                                 p: '20px 26px',
+                                fontFamily: 'Poppins',
+                                fontSize: '1.1rem',
                                 mr: isSm ? '22px' : null,
+                                border: '2px solid',
+                                borderColor: 'transparent',
+                                ':hover': {
+                                    color: lighten(theme.palette.warning.main,0.2),
+                                    border: '2px solid',
+                                    borderColor: lighten(theme.palette.warning.main,0.2),
+                                }
                             }}
-                            startIcon={<Creation width={38}/>}>
-                        {t('Create Nostr Account')}
+                            startIcon={<Creation width={30}/>}>
+                        {t('Create Account')}
                     </Button>
                     <Button variant="login" size="large" disableElevation fullWidth onClick={importAccount}
-                            sx={{mb: '22px', p: '20px 26px'}} startIcon={<Import width={38}/>}>
-                        {t('Import Nostr Account')}
+                            sx={{
+                                mb: '22px',
+                                p: '20px 26px',
+                                fontFamily: 'Poppins',
+                                fontSize: '1.1rem',
+                                border: '2px solid',
+                                borderColor: 'transparent',
+                                ':hover': {
+                                    color: lighten(theme.palette.primary.main,0.3),
+                                    border: '2px solid',
+                                    borderColor: lighten(theme.palette.primary.main,0.3),
+                                }
+                                }} startIcon={<Import width={30}/>}>
+                        {t('Import Key')}
                     </Button>
                 </Box>
                 {PLATFORM === 'web' && (
                     <Button variant="login" size="large" disableElevation fullWidth onClick={loginNip07}
-                            sx={{p: '14px'}} startIcon={<Wallet height={20}/>}>
-                        {t('Use NIP-07 Wallet')}
+                            sx={{
+                                p: '20px 26px',
+                                fontFamily: 'Poppins',
+                                fontSize: '1.1rem',
+                                border: '2px solid',
+                                borderColor: 'transparent',
+                                ':hover': {
+                                    color: lighten(theme.palette.primary.main,0.3),
+                                    border: '2px solid',
+                                    borderColor: lighten(theme.palette.primary.main,0.3),
+                                }
+                                }} startIcon={<Wallet height={30}/>}>
+                        {t('Use Nostr Extension')}
                     </Button>
                 )}
             </>

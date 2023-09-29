@@ -4,7 +4,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import {useTheme} from '@mui/material/styles';
+import {darken} from '@mui/material';
 import CloseModal from 'components/close-modal';
 import CopyToClipboard from 'components/copy-clipboard';
 import useModal from 'hooks/use-modal';
@@ -15,6 +16,7 @@ import {Channel} from 'types';
 
 
 const Invite = (props: { channel: Channel }) => {
+    const theme = useTheme();
     const {channel} = props;
     const [, showModal] = useModal();
     const [t] = useTranslation();
@@ -27,7 +29,8 @@ const Invite = (props: { channel: Channel }) => {
 
     return (
         <>
-            <DialogTitle>{t('Invite People')}<CloseModal onClick={handleClose}/></DialogTitle>
+        <Box sx={{backgroundColor: darken(theme.palette.primary.dark,0.3)}}>
+            <DialogTitle>{t('Invite Friends & Family  👨‍👩‍👧‍👦')}<CloseModal onClick={handleClose}/></DialogTitle>
             <DialogContent>
                 <Box sx={{pt: '10px'}}>
                     <TextField
@@ -44,6 +47,7 @@ const Invite = (props: { channel: Channel }) => {
                     />
                 </Box>
             </DialogContent>
+        </Box>    
         </>
     );
 }

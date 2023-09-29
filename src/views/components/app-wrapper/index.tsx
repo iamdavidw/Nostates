@@ -44,7 +44,8 @@ const AppWrapper = (props: { children: React.ReactNode }) => {
                 <Box sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontWeight: '600',
                 }} onClick={() => {
                     navigate('/settings/keys').then();
                     setBackupWarn(false);
@@ -56,9 +57,9 @@ const AppWrapper = (props: { children: React.ReactNode }) => {
                         mr: '10px',
                         ml: isSm ? null : '10px'
                     }}>
-                        <Alert height={18}/>
+                        <Alert height={20}/>
                     </Box>
-                    {t('Please take a moment to save a copy of your private key.')}
+                    {t('Please save a copy of your Private Key')}
                 </Box>
             </Box>
         )}

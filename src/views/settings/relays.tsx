@@ -15,7 +15,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import {RouteComponentProps, useNavigate} from '@reach/router';
 import {Helmet} from 'react-helmet';
-
+import {useTheme} from '@mui/material/styles';
 import useTranslation from 'hooks/use-translation';
 import useToast from 'hooks/use-toast';
 import useMediaBreakPoint from 'hooks/use-media-break-point';
@@ -29,9 +29,10 @@ import ConfirmDialog from 'components/confirm-dialog';
 import {keysAtom, ravenAtom} from 'atoms';
 import {RelayDict} from 'types';
 import {getRelays, getRelaysNullable, removeRelays, storeRelays} from 'local-storage';
-import ShareIcon from 'svg/share';
+import CopyIcon from 'svg/content-copy';
 import DeleteIcon from 'svg/delete';
 import Plus from 'svg/plus';
+import {darken} from '@mui/material';
 
 
 const SettingsRelaysPage = (_: RouteComponentProps) => {
@@ -46,6 +47,7 @@ const SettingsRelaysPage = (_: RouteComponentProps) => {
     const [data, setData] = useState<RelayDict>({});
     const [newAddress, setNewAddress] = useState('');
     const [canRestore, setCanRestore] = useState<boolean>(false);
+    const theme = useTheme();
 
     useEffect(() => {
         if (!keys) {
@@ -168,7 +170,7 @@ const SettingsRelaysPage = (_: RouteComponentProps) => {
     }
 
     return <>
-        <Helmet><title>{t('NostrChat - Relays')}</title></Helmet>
+        <Helmet><title>{t('NoStates - Relays')}</title></Helmet>
         <AppWrapper>
             <SettingsMenu/>
             <AppContent>
@@ -179,15 +181,16 @@ const SettingsRelaysPage = (_: RouteComponentProps) => {
                             <Box sx={{
                                 display: 'flex',
                                 justifyContent: 'flex-end',
+                                backgroundColor: theme.palette.secondary.main,
                                 mb: '20px'
                             }}>
                                 <Button variant="outlined" onClick={restore}>{t('Restore defaults')}</Button>
                             </Box>
                         )}
-                        <TableContainer component={Paper}>
+                        <TableContainer component={Paper} sx={{backgroundColor: darken(theme.palette.secondary.dark,0.7)}}>
                             <Table>
-                                <TableHead>
-                                    <TableRow>
+                                <TableHead sx={{color: theme.palette.secondary.dark, backgroundColor: darken(theme.palette.secondary.light,0.6)}}>
+                                    <TableRow >
                                         <TableCell>{t('Address')}</TableCell>
                                         <TableCell>{t('Read')}</TableCell>
                                         <TableCell>{t('Write')}</TableCell>
@@ -198,7 +201,14 @@ const SettingsRelaysPage = (_: RouteComponentProps) => {
                                 <TableBody>
                                     {Object.keys(data).map(r => {
                                         return <TableRow key={r}>
-                                            <TableCell>{r}</TableCell>
+                                            <TableCell>
+                                                {r.startsWith('wss://') ?
+                                                    <Box>
+                                                        <span style={{fontSize: '1rem', fontWeight: 700, color: theme.palette.text.primary}}>{r.substring(6)}</span>
+                                                    </Box> 
+                                                    : r
+                                                }
+                                            </TableCell>
                                             <TableCell sx={{width: '40px'}}>
                                                 <Switch size="small"
                                                         checked={data[r].read}
@@ -214,10 +224,10 @@ const SettingsRelaysPage = (_: RouteComponentProps) => {
                                                         }}/>
                                             </TableCell>
                                             <TableCell sx={{width: '70px'}}>
-                                                <Button size="small" startIcon={<ShareIcon height={20}/>}
+                                                <Button size="small" startIcon={<CopyIcon height={20}/>}
                                                         onClick={() => {
                                                             recommend(r);
-                                                        }}>{t('Share')}</Button>
+                                                        }}>{t('Recommend')}</Button>
                                             </TableCell>
                                             <TableCell sx={{width: '70px'}}>
                                                 <IconButton size="small" color="primary"

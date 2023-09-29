@@ -56,24 +56,26 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
     const isSpammer = spammers[message.creator] !== undefined;
     const renderedBody = useMemo(() => {
         const sx = {
-            fontSize: '.8em',
-            background: grey[800],
+            fontSize: '.9em',
+            fontWeight: 600,
+            color: darken(theme.palette.text.secondary,0.4),
+            background: theme.palette.secondary.main,
             display: 'inline-flex',
-            borderRadius: '6px',
-            p: '0 6px',
+            borderRadius: '8px',
+            p: '1px 6px',
             cursor: 'pointer',
             ':hover': {
-                background: grey[600],
+                background: theme.palette.secondary.dark,
             }
         }
         if (isSpammer && !showSpammer) {
             return <Box sx={sx} onClick={() => {
                 setShowSpammer(true);
-            }}>{t('This account appears to be a spammer. Click to show message.')}</Box>
+            }}>{t('Identified as spam. Click to show')}</Box>
         } else if (isSpammer && showSpammer) {
             return <>
                 {renderer(message)}
-                <Box sx={{...sx, mt: '10px'}} onClick={() => {
+                <Box sx={{...sx, mt: '8px', mb: '8px', fontWeight: 700, color: theme.palette.primary.main, ':hover': { color: theme.palette.primary.dark}}} onClick={() => {
                     setShowSpammer(false);
                 }}>{t('Hide')}</Box>
             </>
@@ -116,7 +118,7 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
         }
     }, [mobileMenu]);
 
-    const ps = isMd ? '24px' : '10px';
+    const ps = isMd ? '14px' : '14px';
     return <Box
         data-visible={isVisible}
         data-id={message.id}
@@ -124,12 +126,14 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
         ref={holderEl}
         sx={{
             display: 'flex',
+            borderRadius: '16px',
+            margin: '0px 16px',
             p: `${!compactView ? '15px' : '3px'} ${ps} 0 ${ps}`,
             position: 'relative',
-            background: activeMessage === message.id || mobileMenu ? theme.palette.divider : null,
+            background: activeMessage === message.id || mobileMenu ? theme.palette.secondary.main : null,
             ...styles.withHover({
                 ':hover': {
-                    background: theme.palette.divider
+                    background: theme.palette.secondary.main
                 }
             }),
             userSelect: canTouch ? 'none' : null
@@ -168,13 +172,13 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
         }}><MessageMenuWeb message={message} inThreadView={inThreadView}/></Box>)}
         <Box sx={{
             display: 'flex',
-            width: '40px',
+            width: '50px',
             flexGrow: 0,
             flexShrink: 0,
         }}>
             {compactView ? null :
                 <Box sx={{cursor: 'pointer'}} onClick={profileClicked}>
-                    <Avatar src={profile?.picture} seed={message.creator} size={40}/>
+                    <Avatar src={profile?.picture} seed={message.creator} size={50}/>
                 </Box>}
         </Box>
         <Box sx={{flexGrow: 1, ml: '12px'}}>
@@ -193,14 +197,17 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
                 }}>{profileName}</Box>
                 <Tooltip title={messageDateTime} placement="right">
                     <Box sx={{
-                        color: darken(theme.palette.text.secondary, 0.3),
+                        color: darken(theme.palette.text.secondary, 0.5),
                         fontSize: '90%',
+                        fontWeight: 600,
+                        paddingLeft: '6px',
                         cursor: 'default'
                     }}>{messageTime}</Box>
                 </Tooltip>
             </Box>)}
             <Box sx={{
-                fontSize: '0.9em',
+                fontSize: '0.8em',
+                fontWeight: 500,
                 mt: '4px',
                 wordBreak: 'break-word',
                 lineHeight: '1.4em',
@@ -212,7 +219,7 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
                     mb: '4px',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    fontSize: '0.8rem',
+                    fontSize: '0.9rem',
                     cursor: 'pointer',
                     border: '1px solid transparent',
                     color: darken(theme.palette.text.secondary, 0.3),
@@ -245,7 +252,7 @@ const MessageView = (props: { message: Message, compactView: boolean, dateFormat
                     </Box>
                     {(isMd && !threadRoot) && (
                         <>
-                            <Box sx={{mr: '10px'}}>
+                            <Box sx={{mr: '10px', fontSize: '0.75rem', fontWeight: 600, color: darken(theme.palette.text.secondary, 0.5)}}>
                                 {t('Last reply {{n}}', {n: lastReply!})}
                             </Box>
                             <ChevronRight height={20}/>

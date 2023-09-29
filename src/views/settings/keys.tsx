@@ -21,6 +21,7 @@ import ContentCopy from 'svg/content-copy';
 import Eye from 'svg/eye';
 import EyeOff from 'svg/eye-off';
 import Information from 'svg/information';
+import {darken} from '@mui/material';
 
 
 const SettingsKeysPage = (_: RouteComponentProps) => {
@@ -44,7 +45,7 @@ const SettingsKeysPage = (_: RouteComponentProps) => {
     const pub = nip19.npubEncode(keys.pub);
 
     return <>
-        <Helmet><title>{t('NostrChat - Keys')}</title></Helmet>
+        <Helmet><title>{t('NoStates - Keys')}</title></Helmet>
         <AppWrapper>
             <SettingsMenu/>
             <AppContent>
@@ -68,15 +69,15 @@ const SettingsKeysPage = (_: RouteComponentProps) => {
 
                         const priv = nip19.nsecEncode(keys.priv);
                         return <>
-                            <Box sx={{mb: '30px', color: theme.palette.text.secondary, fontSize: '0.8em'}}>
-                                {t('Please make sure you save a copy of your private key.')}
+                            <Box sx={{mb: '30px', color: darken(theme.palette.text.secondary,0.5), fontSize: '0.8em', fontWeight: 700}}>
+                                {t('Please make sure you save a copy of your private key!')}
                             </Box>
                             <TextField sx={{mb: '30px'}} label={t('Private key')} value={reveal ? priv : 'x'.repeat(64)}
                                        fullWidth
                                        type={reveal ? 'text' : 'password'}
                                        helperText={<Box component="span" sx={{
-                                           fontWeight: 'bold',
-                                           color: theme.palette.warning.main,
+                                           fontWeight: 600,
+                                           color: theme.palette.error.main,
                                            opacity: .7
                                        }}>
                                            {t('This is your private key. Do not share it with anyone else!')}
