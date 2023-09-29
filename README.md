@@ -1,4 +1,4 @@
-# NostrChat
+# NoStates
 
 <img src="public/logo192.png" width="100">
 
