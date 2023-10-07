@@ -32,7 +32,7 @@ const ConfirmDialog = (props: {onConfirm: () => void}) => {
                 <CloseModal onClick={handleClose}/>
             </DialogTitle>
             <DialogContent>
-                <DialogContentText>{t('Are you sure you want to leave?')}</DialogContentText>
+                <DialogContentText>{t('Are you sure you want to do this?')}</DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>{t('Cancel')}</Button>
