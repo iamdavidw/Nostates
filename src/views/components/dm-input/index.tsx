@@ -22,6 +22,7 @@ const DmInput = (props: { pubkey: string, onDM: () => void }) => {
     }
 
     return <TextField
+        sx={{mt:'16px'}}
         autoComplete="off"
         InputProps={{
             sx: {
@@ -34,6 +35,8 @@ const DmInput = (props: { pubkey: string, onDM: () => void }) => {
                     width: '40px',
                     height: '40px',
                     padding: '10px',
+                    marginTop: '10px',
+                    marginBottom: '10px',
                     marginRight: '10px',
                     borderRadius: '10px'
                 }} onClick={send}><Send height={28}/></Button>

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import {useTheme} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import Divider from '@mui/material/Divider';
 import DialogContent from '@mui/material/DialogContent';
 import {nip05, nip19} from 'nostr-tools';
 import useTranslation from 'hooks/use-translation';
@@ -16,10 +17,12 @@ import MuteBtn from 'views/components/mute-btn';
 import DmInput from 'views/components/dm-input';
 import {keysAtom} from 'atoms';
 import {Profile} from 'types';
+import {darken} from '@mui/material';
 import KeyVariant from 'svg/key-variant';
 import EyeOff from 'svg/eye-off';
 import CheckDecagram from 'svg/check-decagram';
 import {truncate, truncateMiddle} from 'util/truncate';
+
 
 
 const ProfileDialog = (props: { profile?: Profile, pubkey: string, onDM: () => void }) => {
@@ -58,6 +61,7 @@ const ProfileDialog = (props: { profile?: Profile, pubkey: string, onDM: () => v
     };
 
     return <>
+    <Box sx={{backgroundColor: darken(theme.palette.secondary.dark,0.4)}}>
         <DialogContent>
             <CloseModal onClick={handleClose}/>
             <Box sx={{fontSize: '0.8em'}}>
@@ -101,38 +105,53 @@ const ProfileDialog = (props: { profile?: Profile, pubkey: string, onDM: () => v
                         <Avatar src={profile?.picture} seed={pubkey} size={200}/>
                     </Box>
                 </Box>
-                <Box sx={{textAlign: 'center', mt: '12px'}}>
+                <Box sx={{textAlign: 'center', mt: '16px'}}>
                     {profileName && (<Box sx={{mb: '10px', fontWeight: 600, fontSize: '1.2em'}}>{profileName}</Box>)}
                     {profile?.about && (
                         <Box sx={{
                             mb: '10px',
                             wordBreak: 'break-word',
                             lineHeight: '1.4em',
+                            paddingBottom: '10px',
                             color: theme.palette.text.secondary
                         }}>{truncate(profile.about, 160)}</Box>
                     )}
+                    <Divider
+                        sx={{
+                            mt: '10px',
+                            mb: '16px',
+                            mx: '25%',
+                            fontSize: '0.6em',
+                            color: darken(theme.palette.text.secondary, 0.4),
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+
+                        }}></Divider>
                     <CopyToClipboard copy={pub}>
                         <Box sx={{
                             mb: '16px',
-                            fontSize: '0.9em',
+                            fontSize: '1.0em',
                             color: theme.palette.text.secondary,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            cursor: 'pointer'
+                            fontWeight: 700,
+                            cursor: 'pointer',
                         }}>
                             <Box sx={{
                                 mr: '4px',
                                 display: 'flex',
                                 color: theme.palette.warning.main
                             }}><KeyVariant height={14}/></Box>
-                            {truncateMiddle(pub, (isSm ? 46 : 36), ':')}
+                            {(truncateMiddle(pub, (isSm ? 40 : 34), ':')) + '...'}
                         </Box>
                     </CopyToClipboard>
                 </Box>
                 {!isMe && (<DmInput pubkey={pubkey} onDM={onDM}/>)}
             </Box>
         </DialogContent>
+        </Box>
     </>;
 }
 
