@@ -1,7 +1,7 @@
 {
-  "short_name": "NostrChat",
-  "name": "NostrChat",
-  "description": "A decentralized chat application",
+  "short_name": "NoStates",
+  "name": "NoStates",
+  "description": "A place to speak your mind & witness our borderless world",
   "icons": [
     {
       "src": "favicon.ico",

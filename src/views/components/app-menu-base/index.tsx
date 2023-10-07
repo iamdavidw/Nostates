@@ -9,7 +9,6 @@ import UserMenu from 'views/components/app-menu/user-menu';
 import useMediaBreakPoint from 'hooks/use-media-break-point';
 import useStyles from 'hooks/use-styles';
 import {appMenuAtom} from 'atoms';
-import ArrowLeft from 'svg/arrow-left';
 import useModal from 'hooks/use-modal';
 import {keysAtom} from 'atoms';
 import {removeKeys} from 'local-storage';

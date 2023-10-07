@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'org.nostrchat.app',
-  appName: 'NostrChat',
+  appId: 'com.nostates.app',
+  appName: 'NoStates',
   webDir: 'build',
   backgroundColor: '#343434',
   server: {

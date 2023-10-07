@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useAtom} from 'jotai';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import {nip06, getPublicKey} from 'nostr-tools';
@@ -93,10 +92,7 @@ const Login = (props: { onDone: () => void }) => {
     }
 
     return <>
-    <Box sx={{color: 'text.primary', m: '20px 0 10px 0', width: isSm ? '550px' : '100%', minWidth: '350px', fontSize: isSm ? '4rem' : isMd ? '3rem' : '3rem', fontFamily: 'Poppins', fontWeight: 700, display: 'flex', justifyContent: 'center',
-        }}>{('🏳️ NoStates')}
-        </Box>
-        <Divider sx={{m: '28px 0', borderWidth: '2px', borderRadius: '4px'}}/>
+    
         {(() => {
             if (step === 1) {
                 return <Box sx={{display: 'flex', justifyContent: 'center'}}><CircularProgress/></Box>

@@ -22,7 +22,7 @@ export const InstallNip07Dialog = () => {
 
     return (
         <>
-            <DialogTitle>{t('No NIP-07 wallet found!')}
+            <DialogTitle>{t('No NIP-07 extension found!')}
                 <CloseModal onClick={handleClose}/>
             </DialogTitle>
             <DialogContent>

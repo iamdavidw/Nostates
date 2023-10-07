@@ -153,6 +153,45 @@ th {
   font-display: block;
 }
 
+@font-face {
+  font-family: 'Rubik';
+  font-weight: 300;
+  src: url("assets/fonts/rubik/Rubik-Light.ttf");
+  }
+
+@font-face {
+  font-family: 'Rubik';
+  font-weight: 400;
+  src: url("assets/fonts/rubik/Rubik-Regular.ttf");
+ }
+
+@font-face {
+  font-family: 'Rubik';
+  font-weight: 500;
+  src: url("assets/fonts/rubik/Rubik-Medium.ttf");
+  }
+
+@font-face {
+  font-family: 'Rubik';
+  font-weight: 700;
+  src: url("assets/fonts/rubik/Rubik-Bold.ttf");}
+
+
+
+.star-wars-effect {
+  position: relative !important;
+  transform-origin:50% 100% !important;
+  transform:perspective(300px) rotateX(20deg) !important;
+}
+.star-wars-effect-sm {
+  position: relative !important;
+  transform-origin:50% 100% !important;
+  transform:perspective(900px) rotateX(20deg) !important;
+}
+
+
+
+
 #root {
   height: 100%;
 }
