@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import {useTheme} from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import {useAtom} from 'jotai';
-
+import useMediaBreakPoint from 'hooks/use-media-break-point';
 import MessageView from 'views/components/message-view';
 import useStyles from 'hooks/use-styles';
 import useTranslation from 'hooks/use-translation';
@@ -15,6 +15,8 @@ import {keysAtom, ravenAtom, readMarkMapAtom, tempPrivAtom} from 'atoms';
 import {notEmpty} from 'util/misc';
 
 const ChatView = (props: { messages: Message[], separator: string, loading?: boolean, isDM?: boolean }) => {
+    const {isSm} = useMediaBreakPoint();
+    const {isMd} = useMediaBreakPoint();
     const {separator, messages, loading, isDM} = props;
     const theme = useTheme();
     const styles = useStyles();
@@ -151,7 +153,7 @@ const ChatView = (props: { messages: Message[], separator: string, loading?: boo
     }, [isAtBottom]);
 
     return <Box ref={ref} sx={{
-        mt: 'auto',
+        mb: 'auto',
         fontFamily: 'Poppins',
         paddingBottom: '20px',
         ...styles.scrollY,
@@ -166,10 +168,10 @@ const ChatView = (props: { messages: Message[], separator: string, loading?: boo
                 return <React.Fragment key={msg.id}>
                     <Divider
                         sx={{
-                            m: '10px 24px',
+                            m: isSm ? '20px 24px' : '10px 24px',
                             fontSize: '0.7em',
                             color: darken(theme.palette.text.secondary, 0.4),
-                            mt: i === 0 ? '40px' : null,
+                            mt: i === 0 ? '20px' : null,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
