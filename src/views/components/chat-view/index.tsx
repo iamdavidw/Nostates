@@ -166,10 +166,16 @@ const ChatView = (props: { messages: Message[], separator: string, loading?: boo
                 return <React.Fragment key={msg.id}>
                     <Divider
                         sx={{
-                            m: '20px 24px',
+                            m: '10px 24px',
                             fontSize: '0.7em',
                             color: darken(theme.palette.text.secondary, 0.4),
-                            mt: i === 0 ? '100px' : null
+                            mt: i === 0 ? '40px' : null,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            
+                            '::before': i === 0 ? {display: 'none'} : {},
+                            '::after': i === 0 ? {display: 'none'} : {}
                         }}>{msgDate}</Divider>
                     <MessageView message={msg} dateFormat='time' compactView={isCompact}/>
                 </React.Fragment>
